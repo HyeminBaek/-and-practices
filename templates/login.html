@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<style>
+#nav_menu ul {
+ list-style-type:none;
+ background-color:#6E6E6E;
+ padding:1px 5px 5px 1px;
+ float:right;
+}
+
+#nav_menu ul li {
+ display:inline;
+ border-left: 1px solid #c0c0c0;
+ padding: 0px 10px 0px 10px;
+ margin: 5px 0px 5px 0px;
+ color:#ffffff;
+ font-size:9pt;
+}
+
+#nav_menu ul li:first-child {
+ border-left: none;
+}
+
+#nav_menu a {
+ text-decoration:none;
+ color:#ffffff
+}
+
+#nav_menu a:hover {
+ color:#D4F4FA;
+ border-bottom:3px solid #5882FA;
+}
+ table{
+   text-align: center;
+ }
+ td{
+   width: 200px;
+   height: 80px;
+   border: 1px solid;
+ }
+ input{
+   text-align: center;
+
+   font-weight: bold;
+   color: #0101DF;
+ }
+</style>
+<head>
+    <meta charset="UTF-8">
+    <title>나만의 문제장 - 로그인</title>
+     <meta name='viewport' content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+     integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
+     </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+     integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+     </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+     integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+     </script>
+</head>
+<body>
+<div id="nav_menu">
+<ul>
+<li><a href="/">홈</a></li>
+<li><a href="/question">문제 만들기</a></li>
+
+<li><a href="/question/view">문제 보기</a></li>
+<li><a href="/question/solve">문제 풀기</a></li>
+<li><a href="/incorrect_note/view">오답노트 보기</a></li>
+</ul>
+</div>
+<div class="container">
+        <div class="row mt-5">
+            <h1>로그인</h1>
+        </div>
+        <div class="row mt-5">
+            <div class="col-12">
+                <form method="POST" >
+                    {{form.csrf_token}}
+                    <div class="form-group">
+
+                        {{form.user_email.label("이메일")}}
+                        {{form.user_email(class="form-control", placeholder="이메일")}}
+                    </div>
+
+                    <div class="form-group">
+
+                        {{form.user_pw.label("비밀번호")}}
+                        {%if form.user_pw.errors%}
+                        <!-- 로그인 실패시 errors/ password필드의 모든 에러를 갖고있다. -->
+                        {{form.user_pw.errors.0}}
+                        <!--0 : 첫번째 에러메시지를 출력 하겠다 -->
+                        {%endif%}
+                        {{form.user_pw(class="form-control", placeholder="비밀번호")}}
+
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">로그인</button>
+                </form>
+            </div>
+
+        </div>
+    </div>
+</body>
+</html>
